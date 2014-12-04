@@ -1,6 +1,6 @@
 {
     "name": "angular-natural-language",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Natural language form element directives.",
     "main": "",
     "scripts": {
@@ -8,7 +8,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/Venturocket/angular-natural-language.git"
+        "url": "git://github.com/joinhaven/angular-natural-language.git"
     },
     "author": "Venturocket, Inc.",
     "license": "MIT",
