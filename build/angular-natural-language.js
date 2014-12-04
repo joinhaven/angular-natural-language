@@ -270,9 +270,6 @@ angular.module('vr.directives.nlForm.select',[])
 
             if ($scope.openValue !== $scope.value) {
                 if (typeof $scope.change === 'function') {
-                    $scope.$digest(function() {
-                        $scope.value;
-                    });
                     $scope.change();
                 }
             }
