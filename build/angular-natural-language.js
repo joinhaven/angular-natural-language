@@ -41,8 +41,6 @@ angular.module('vr.directives.nlForm.select',[])
                 // an option which is the equivalent of "select all" (multiple only)
                 scope.allOptions = !angular.isUndefined(attributes.all) ? attributes.all : false;
 
-                scope.changeFunction = !angular.isUndefined(attributes.change) ? attributes.change : function() {};
-
 				// convert the value to an array if this is a multi-select
                 if(scope.multiple && angular.isUndefined(scope.value)){
                     scope.value = [];
@@ -270,7 +268,9 @@ angular.module('vr.directives.nlForm.select',[])
 
             if ($scope.openValue !== $scope.value) {
                 if (typeof $scope.change === 'function') {
-                    $scope.change();
+                    $timeout(function() {
+                        $scope.change();
+                    }, 0);
                 }
             }
 		};
@@ -329,12 +329,8 @@ angular.module('vr.directives.nlForm.select',[])
 			if($scope.multiple) {
 				var index = $scope.value.indexOf(value);
 				if(index == -1) {
-					$scope.changeFunction();
 					$scope.value.push(value);
 				} else {
-					if ($scope.value[index] !== value) {
-						$scope.changeFunction();
-					}
 					$scope.value.splice(index,1);
 				}
 				if($scope.required) {
@@ -348,11 +344,6 @@ angular.module('vr.directives.nlForm.select',[])
 					}
 				}
 			} else {
-
-				if (value !== $scope.value) {
-					$scope.changeFunction();
-				}
-
 				$scope.value = value;
 			}
 		};
@@ -489,7 +480,7 @@ angular.module('vr.directives.nlForm.text',[])
                     '<a class="nl-field-toggle" ng-click="open($event)" ng-bind="viewValue()"></a>' +
                     '<ul>' +
                         '<li class="nl-ti-input">' +
-                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
+                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" />' +
                             '<button class="nl-field-go" ng-click="close()">Go</button>' +
                         '</li>' +
                         '<li class="nl-ti-example" ng-show="showSubline()" ng-bind-html-unsafe="subline"></li>' +

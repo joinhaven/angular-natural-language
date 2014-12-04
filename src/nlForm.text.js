@@ -16,7 +16,7 @@ angular.module('vr.directives.nlForm.text',[])
                     '<a class="nl-field-toggle" ng-click="open($event)" ng-bind="viewValue()"></a>' +
                     '<ul>' +
                         '<li class="nl-ti-input">' +
-                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
+                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" />' +
                             '<button class="nl-field-go" ng-click="close()">Go</button>' +
                         '</li>' +
                         '<li class="nl-ti-example" ng-show="showSubline()" ng-bind-html-unsafe="subline"></li>' +

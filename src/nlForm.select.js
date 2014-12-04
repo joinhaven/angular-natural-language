@@ -33,8 +33,6 @@ angular.module('vr.directives.nlForm.select',[])
                 // an option which is the equivalent of "select all" (multiple only)
                 scope.allOptions = !angular.isUndefined(attributes.all) ? attributes.all : false;
 
-                scope.changeFunction = !angular.isUndefined(attributes.change) ? attributes.change : function() {};
-
 				// convert the value to an array if this is a multi-select
                 if(scope.multiple && angular.isUndefined(scope.value)){
                     scope.value = [];
@@ -262,7 +260,9 @@ angular.module('vr.directives.nlForm.select',[])
 
             if ($scope.openValue !== $scope.value) {
                 if (typeof $scope.change === 'function') {
-                    $scope.change();
+                    $timeout(function() {
+                        $scope.change();
+                    }, 0);
                 }
             }
 		};
@@ -321,12 +321,8 @@ angular.module('vr.directives.nlForm.select',[])
 			if($scope.multiple) {
 				var index = $scope.value.indexOf(value);
 				if(index == -1) {
-					$scope.changeFunction();
 					$scope.value.push(value);
 				} else {
-					if ($scope.value[index] !== value) {
-						$scope.changeFunction();
-					}
 					$scope.value.splice(index,1);
 				}
 				if($scope.required) {
@@ -340,11 +336,6 @@ angular.module('vr.directives.nlForm.select',[])
 					}
 				}
 			} else {
-
-				if (value !== $scope.value) {
-					$scope.changeFunction();
-				}
-
 				$scope.value = value;
 			}
 		};
