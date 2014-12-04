@@ -16,8 +16,7 @@ angular.module('vr.directives.nlForm.text',[])
                     '<a class="nl-field-toggle" ng-click="open($event)" ng-bind="viewValue()"></a>' +
                     '<ul>' +
                         '<li class="nl-ti-input">' +
-                            '<input ng-if="html5type" type="{{ html5type }}" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
-                            '<input ng-if="!html5type" type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
+                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
                             '<button class="nl-field-go" ng-click="close()">Go</button>' +
                         '</li>' +
                         '<li class="nl-ti-example" ng-show="showSubline()" ng-bind-html-unsafe="subline"></li>' +
@@ -53,15 +52,23 @@ angular.module('vr.directives.nlForm.text',[])
 		$scope.opened = false;
 
 		// open the input
-		$scope.open = function(event){
-			event.stopPropagation();
-			$scope.opened = true;
-		};
+        $scope.open = function(event){
+            event.stopPropagation();
+            $scope.opened = true;
+            $scope.openValue = $scope.value;
+        };
 
 		// close the input
-		$scope.close = function(){
-			$scope.opened = false;
-		};
+        $scope.close = function(){
+            $scope.opened = false;
+
+            if ($scope.openValue !== $scope.value) {
+                if (typeof $scope.change === 'function') {
+
+                    $scope.change();
+                }
+            }
+        };
 
 		// if there is no value, show the placeholder instead
 		$scope.viewValue = function(){

@@ -253,11 +253,21 @@ angular.module('vr.directives.nlForm.select',[])
 		$scope.open = function(event){
 			event.stopPropagation();
 			$scope.opened = true;
+            $scope.openValue = $scope.value;
 		};
 
 		// close the select
 		$scope.close = function(){
 			$scope.opened = false;
+
+            if ($scope.openValue !== $scope.value) {
+                if (typeof $scope.change === 'function') {
+                    $scope.$digest(function() {
+                        $scope.value;
+                    });
+                    $scope.change();
+                }
+            }
 		};
 
 		// select an option
