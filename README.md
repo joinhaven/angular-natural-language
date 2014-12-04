@@ -1,8 +1,9 @@
-# angular-natural-language [![Build Status](https://secure.travis-ci.org/Venturocket/angular-natural-language.png?branch=master)](http://travis-ci.org/Venturocket/angular-natural-language)
+# angular-natural-language
 
 ## About
 Natural language form element directives for AngularJS.
-Based on [codrops/NaturalLanguageForm](https://github.com/codrops/NaturalLanguageForm).
+
+Forked from [Venturocket/angular-natural-language](https://github.com/Venturocket/angular-natural-language).
 
 ## Usage
 
@@ -15,6 +16,7 @@ As an element:
 	options="{string}"
 	multiple="{string}"
 	empty="{string}"
+	change="{function}"
 	required>
 </nl-select>
 ```
@@ -26,6 +28,7 @@ As an attribute:
 	options="{string}"
 	multiple="{string}"
 	empty="{string}"
+	change="{function}"
 	required>
 </div>
 ```
@@ -39,6 +42,7 @@ As an attribute:
 |all        |string (optional)  |Only applicable if multiple is enabled. Text to display for the select all option.|
 |none       |string (optional)  |Only applicable if multiple is enabled. Text to display for the select none option.|
 |empty		|string (optional) |What to display when no options are selected. Default: "none" (this is only used if multiple is specified)|
+|change		|function |Function that gets called when the value of the select changes|
 |required	|boolean|Simulates the required attribute on a normal select|
 
 #### Options List
@@ -80,6 +84,8 @@ As an element:
 	placeholder="{string}"
 	subline="{string}"
 	name="{string}"
+	change="{function}"
+	html5type="{string}"
 	required>
 </nl-text>
 ```
@@ -91,6 +97,8 @@ As an attribute:
 	placeholder="{string}"
 	subline="{string}"
 	name="{string}"
+	change="{function}"
+	html5type="{string}"
 	required>
 </div>
 ```
@@ -102,4 +110,6 @@ As an attribute:
 |placeholder|string (optional) |String to use as the placeholder for the input and default text for the view|
 |subline	|string (optional) |Small bit of directions to display just below the input|
 |name		|string (optional) |Passed directly to the actual input element|
+|change		|function |Function that gets called when the value of the input changes|
+|html5type	|string |html5 input type|
 |required	|boolean|Simulates the required attribute on a normal text input|
