@@ -68,7 +68,7 @@ angular.module('vr.directives.nlForm.select',[])
 			}
         };
     })
-	.controller('nlSelectCtrl',['$scope', function($scope){
+	.controller('nlSelectCtrl',['$scope', '$timeout', function($scope, $timeout){
 
 		// option list type constants
 		var ARRAY_OF_LABELS = 1;		// e.g. [ 'one', 'two', 'three', ...]
