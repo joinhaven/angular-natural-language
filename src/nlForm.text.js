@@ -7,14 +7,17 @@ angular.module('vr.directives.nlForm.text',[])
 				placeholder: '@',
 				subline: '@',
 				name: '@',
-				value: '='
+				value: '=',
+                change: '&',
+                html5type: '@',
 			},
             template:
                 '<div ng-form class="nl-field nl-ti-text" ng-class="{\'nl-field-open\': opened}">' +
                     '<a class="nl-field-toggle" ng-click="open($event)" ng-bind="viewValue()"></a>' +
                     '<ul>' +
                         '<li class="nl-ti-input">' +
-                            '<input type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required"/>' +
+                            '<input ng-if="html5type" type="{{ html5type }}" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
+                            '<input ng-if="!html5type" type="text" placeholder="{{ placeholder }}" name="{{ name }}" ng-model="value" ng-click="$event.stopPropagation()" ng-required="required" ng-change="change()"/>' +
                             '<button class="nl-field-go" ng-click="close()">Go</button>' +
                         '</li>' +
                         '<li class="nl-ti-example" ng-show="showSubline()" ng-bind-html-unsafe="subline"></li>' +
