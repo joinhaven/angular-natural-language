@@ -10,7 +10,7 @@
         "test",
         "src",
         "example.html",
-        "Grundfile.js",
+        "Gruntfile.js",
         "karma.conf.js",
         "package.json"
     ],
