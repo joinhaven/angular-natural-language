@@ -19,13 +19,10 @@ angular.module('vr.directives.nlForm.select',[])
             controller: 'nlSelectCtrl',
 			template:
 				"<div ng-form='nlSelect' class='nl-field nl-dd' ng-class=\"{'nl-field-open': opened}\">" +
-					"<a class='nl-field-toggle' ng-click='open($event)' ng-bind='getSelected()'></a>" +
-					"<ul>" +
-                        "<li ng-show='allOptions && multiple && !isAllSelected()' ng-bind='allOptions' ng-click='selectAll()'></li>" +
-						"<li ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-click='select(label)' ng-bind='label'></li>" +
-                        "<li ng-show='multiple && !isNoneSelected()' ng-bind='none' ng-click='selectNone()'></li> " +
-					"</ul>" +
-				"</div>",
+                    "<select>" +
+                        "<option ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-click='select(label)' ng-bind='label'></option>" +
+                    "</select>" +
+                "</div>",
 			link: function(scope, element, attributes){
 
 				// is this required
