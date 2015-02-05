@@ -11,9 +11,8 @@ angular.module('vr.directives.nlForm.select',[])
             controller: 'nlSelectCtrl',
 			template:
 				"<div ng-form='nlSelect' class='nl-field nl-dd' ng-class=\"{'nl-field-open': opened}\">" +
-                    "<select>" +
-                        "<option ng-repeat='label in getLabels()' ng-class=\"{'nl-dd-checked': isSelected(label)}\" ng-click='select(label)' ng-bind='label'></option>" +
-                    "</select>" +
+                    "<a class='nl-field-toggle' ng-click='open($event)' ng-bind='getSelected()'></a>" +
+                    "<select ng-change='select()' ng-model='value' ng-options='opt as opt.label for opt in options' class='nl-selectbox'></select>" +
                 "</div>",
 			link: function(scope, element, attributes){
 
@@ -247,6 +246,16 @@ angular.module('vr.directives.nlForm.select',[])
         // open the select
 		$scope.open = function(event){
 			event.stopPropagation();
+
+            var select = angular.element(event.target).next(),
+                evt = document.createEvent("MouseEvents");
+
+            evt.initMouseEvent("mousedown", event.bubbles, event.cancelable, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+
+            $timeout(function () {
+                select[0].dispatchEvent(evt);
+            }, 0);
+
 			$scope.opened = true;
             $scope.openValue = $scope.value;
 		};
@@ -265,8 +274,8 @@ angular.module('vr.directives.nlForm.select',[])
 		};
 
 		// select an option
-		$scope.select = function(option) {
-			$scope.setValue(option);
+		$scope.select = function() {
+			$scope.setValue($scope.value.value);
 			$scope.close();
 		};
 
